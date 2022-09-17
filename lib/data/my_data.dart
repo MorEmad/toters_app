@@ -1,6 +1,10 @@
+
 import 'package:flutter/material.dart';
 
 import '../models/my_models.dart';
+import '../secreens/home/widgets/my_card_category.dart';
+
+var points;
 
 final List<String> listImages = [
   'assets/images/1.jpeg',
@@ -8,6 +12,17 @@ final List<String> listImages = [
   'assets/images/3.jpg',
 ];
 
+List MycategoryList=[
+  MyCardCategory(img: "assets/images/mycast.png", title: "البقالة"),
+  MyCardCategory(img: "assets/images/grocery.png", title: "توترز فرش"),
+  MyCardCategory(img: "assets/images/myburger.png", title: "المطاعم"),
+  MyCardCategory(img: "assets/images/mywallit.png", title: "اضف رصيد"),
+  MyCardCategory(img: "assets/images/mydeliver.png", title: "المندوب"),
+  MyCardCategory(img: "assets/images/mybags.png", title: "متاجر"),
+];
+
+List<String> AdsWidgetTitle=[];
+List<String> AdsWidgetDes=[];
 List<MainMeal> listMainMeal = [
   MainMeal(
     img: "assets/images/main_meal/kahii.jpg",
@@ -53,6 +68,22 @@ List<MainMeal> listMainMeal = [
 
   )
 ];
+//////////////////////////////details page////////////////////////
+class DetailsPageMod{
+  String meal_name;
+  String res_name;
+  String des;
+  String img;
+  String price;
+
+  DetailsPageMod({required this.meal_name, required this.res_name, required this.img, required this.des, required this.price});
+}
+
+var meal_name;
+var res_name;
+var des;
+var img;
+var price;
 
 ///////////////////////////////////////profil data///////////////////////////////////
 

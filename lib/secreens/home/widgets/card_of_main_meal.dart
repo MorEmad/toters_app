@@ -45,7 +45,7 @@ class CardOfMainMeal extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.teal,
                           image: DecorationImage(
-                              image: Image.asset(img).image,
+                              image: NetworkImage(img),
                               fit: BoxFit.cover)),
                     ),
                     const Positioned(

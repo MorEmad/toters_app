@@ -30,7 +30,7 @@ class MyCardCategory extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(img,height: 40,),
+          Image.network(img,height: 40,),
           Text(title),
 
         ],

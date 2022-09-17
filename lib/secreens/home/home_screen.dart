@@ -6,6 +6,11 @@ import 'package:toters_app/secreens/profile/widgets/my_app_bar.dart';
 import 'package:toters_app/secreens/home/widgets/my_card_category.dart';
 import 'package:toters_app/secreens/widgets/my_divider.dart';
 import '../../constants/colors.dart';
+import 'package:http/http.dart' as http ;
+import 'dart:convert';
+
+import '../../data/my_data.dart';
+import '../../models/my_models.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -13,10 +18,84 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    getDataCarouselImages();
+    getDataCategory();
+    getDataAds();
+    getResturant();
+    getPoint();
+    super.initState();
+  }
+  Future getDataCarouselImages() async {
+    var url = Uri.parse("http://localhost:4000/ads");
+    http.Response response = await http.get(url);
+    String body = response.body;
+    List<dynamic> list1 = json.decode(body);
+    listImages.clear();
 
+    for (int i = 0; i < list1.length; i++) {
+      listImages.add(list1[i]['img']);
+      print(listImages);
+      setState(() {});
+    }
+  }
+  Future getDataCategory() async {
+    var url = Uri.parse("http://localhost:4000/catogary");
+    http.Response response = await http.get(url);
+    String body = response.body;
+    List<dynamic> list1 = json.decode(body);
+    MycategoryList.clear();
+
+    for (int i = 0; i < list1.length; i++) {
+      MycategoryList.add( MyCardCategory(img: list1[i]['img'], title: list1[i]['title']),
+          );
+      print(listImages);
+      setState(() {});
+    }
+  }
+  Future getDataAds() async {
+    var url = Uri.parse("http://localhost:4000/offer");
+    http.Response response = await http.get(url);
+    String body = response.body;
+    List<dynamic> list1 = json.decode(body);
+    AdsWidgetTitle.clear();
+    AdsWidgetDes.clear();
+    for (int i = 0; i < list1.length; i++) {
+      AdsWidgetTitle.add( list1[i]['title']);
+      AdsWidgetDes.add( list1[i]['des']);
+      print(AdsWidgetTitle);
+      setState(() {});
+    }
+  }
+  Future getResturant() async {
+    var url = Uri.parse("http://localhost:4000/restrant");
+    http.Response response = await http.get(url);
+    String body = response.body;
+    List<dynamic> list1 = json.decode(body);
+    listMainMeal.clear();
+    for (int i = 0; i < list1.length; i++) {
+      listMainMeal.add(MainMeal(img: list1[i]['img'], title: list1[i]['res_name'], rate: list1[i]['rate'], type: list1[i]['des'], time: '1', typeTime: 'س', desc: list1[i]['des']) );
+      print(listMainMeal);
+      setState(() {});
+    }
+  }
+  Future getPoint() async {
+    var url = Uri.parse("http://localhost:4000/points");
+    http.Response response = await http.get(url);
+    String body = response.body;
+    List<dynamic> list1 = json.decode(body);
+
+    for (int i = 0; i < list1.length; i++) {
+      points= list1[i]['num_points'];
+      print(points);
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +120,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 12,
                   width: double.infinity),
               AdsWidget(
-                txt: "احصل على خصم 50% على المطاعم هذا الاسبوع",
-                title: 'خصومات اسبوعية',
+                txt: AdsWidgetDes[0],
+                title: AdsWidgetTitle[0],
               ),
               AdsWidget(
-                txt: "اختر افطارك المفضل من توترز",
-                title: 'اجة وكت الريوك',
+                txt:AdsWidgetDes[1],
+                title: AdsWidgetTitle[1],
               ),
               CardOfMainMeal.listOFMainMeal(context),
             ],
@@ -82,8 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              const Text(
-                "3.8K",
+               Text(
+                "$points",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -130,15 +209,12 @@ class _HomeScreenState extends State<HomeScreen> {
       alignment: WrapAlignment.center,
       spacing: 16,
       runSpacing: 16,
-      children: [
-        MyCardCategory(img: "assets/images/mycast.png", title: "البقالة"),
-        MyCardCategory(img: "assets/images/grocery.png", title: "توترز فرش"),
-        MyCardCategory(img: "assets/images/myburger.png", title: "المطاعم"),
-        MyCardCategory(img: "assets/images/mywallit.png", title: "اضف رصيد"),
-        MyCardCategory(img: "assets/images/mydeliver.png", title: "المندوب"),
-        MyCardCategory(img: "assets/images/mybags.png", title: "متاجر"),
+      children:[
+        for (int i=0 ;i<MycategoryList.length;i++)
+          MycategoryList.elementAt(i)
       ],
     );
+
   }
 }
 
