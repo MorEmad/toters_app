@@ -14,9 +14,9 @@ final List<String> listImages = [
 
 List MycategoryList=[
   MyCardCategory(img: "assets/images/mycast.png", title: "البقالة"),
-  MyCardCategory(img: "assets/images/grocery.png", title: "توترز فرش"),
+  // MyCardCategory(img: "assets/images/grocery.png", title: "توترز فرش"),
   MyCardCategory(img: "assets/images/myburger.png", title: "المطاعم"),
-  MyCardCategory(img: "assets/images/mywallit.png", title: "اضف رصيد"),
+  // MyCardCategory(img: "assets/images/mywallit.png", title: "اضف رصيد"),
   MyCardCategory(img: "assets/images/mydeliver.png", title: "المندوب"),
   MyCardCategory(img: "assets/images/mybags.png", title: "متاجر"),
 ];
@@ -49,9 +49,9 @@ List<MainMeal> listMainMeal = [
     img: "assets/images/main_meal/img_6.png",
     title: "خان مندي",
     type: "مندي",
-    rate: "4.8",
-    time: '45-55',
-    typeTime: 'د',
+    rate: "4",
+    time: '1',
+    typeTime: 'س',
     desc:
     'تتنوع وجبات الإفطار حول العالم من حيث المحتوى، ففي شرق آسيا تؤكل أشكال الأرز المطهو أو المقلي، وفي اليابان، تكون البحريَّات جزءا من وجبة الإفطار، إجمالا لا تختلف الوجبات (الإفطار، الغداء والعشاء) عن بعضها في الشَّرق الأقصى بالمقدار الحاصل في الأجزاء الأخرى من العالم.',
 
